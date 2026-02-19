@@ -50,8 +50,8 @@ const products = [
         name: 'Minimalist Stool',
         category: 'chairs',
         images: [
-            'https://images.unsplash.com/photo-1503602642458-2321114458ed?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
-            'https://images.unsplash.com/photo-1519947486511-4639940be434?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80'
+            'https://images.unsplash.com/photo-1595428774223-ef52624120d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
+            'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80'
         ]
     },
     {
@@ -80,8 +80,8 @@ const products = [
         name: 'Storage Cabinet',
         category: 'cupboards',
         images: [
-            'https://images.unsplash.com/photo-1595515106969-1ce29569ff53?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
-            'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80'
+            'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
+            'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80'
         ]
     }
 ];
@@ -113,13 +113,13 @@ document.addEventListener('DOMContentLoaded', () => {
 // Render Products
 function renderProducts(items) {
     productGrid.innerHTML = '';
-    
+
     // Add animation delay based on index
     items.forEach((product, index) => {
         const card = document.createElement('div');
         card.classList.add('product-card');
         card.style.animationDelay = `${index * 0.1}s`;
-        
+
         card.innerHTML = `
             <div class="card-image" onclick="openModal(${product.id})">
                 <img src="${product.images[0]}" alt="${product.name}">
@@ -149,9 +149,9 @@ function setupFilters() {
             filterBtns.forEach(b => b.classList.remove('active'));
             // Add active to clicked
             btn.classList.add('active');
-            
+
             const filterValue = btn.getAttribute('data-filter');
-            
+
             if (filterValue === 'all') {
                 renderProducts(products);
             } else {
@@ -163,22 +163,22 @@ function setupFilters() {
 }
 
 // Modal Logic
-window.openModal = function(productId) {
+window.openModal = function (productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
-    
+
     currentProductImages = product.images;
     currentImageIndex = 0;
-    
+
     updateModalImage();
     modalTitle.textContent = product.name;
-    
+
     modal.style.display = 'block';
     // Small delay to allow display:block to apply before opacity transition
     setTimeout(() => {
         modal.classList.add('show');
     }, 10);
-    
+
     document.body.style.overflow = 'hidden'; // Stop background scrolling
 }
 
@@ -192,7 +192,7 @@ function closeModal() {
 
 function updateModalImage() {
     modalImg.style.opacity = '0.5';
-    
+
     setTimeout(() => {
         modalImg.src = currentProductImages[currentImageIndex];
         modalImg.onload = () => {
